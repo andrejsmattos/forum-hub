@@ -16,7 +16,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "usuarios")
-@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Usuario implements UserDetails {
 
@@ -98,7 +97,13 @@ public class Usuario implements UserDetails {
 //        return perfis;
 //    }
 
-
     public Usuario() {
+    }
+
+    public Usuario(Long id, String nome, String email, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
     }
 }

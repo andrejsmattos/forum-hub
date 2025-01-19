@@ -1,6 +1,6 @@
 package br.com.andrejsmattos.forumhub.domain.topico;
 
-import br.com.andrejsmattos.forumhub.domain.ValidacaoException;
+import br.com.andrejsmattos.forumhub.infra.exception.ValidacaoException;
 import br.com.andrejsmattos.forumhub.domain.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +17,10 @@ public class TopicoService {
     private UsuarioRepository usuarioRepository;
 
     public DadosDetalhamentoTopico cadastrar(DadosCadastroTopico dados) {
+        if (!usuarioRepository.existsById(dados.idAutor())) {
+            throw new ValidacaoException("Id do usuário informado não existe");
+        }
+
         if (topicoRepository.existsByTitulo(dados.titulo())) {
             throw new ValidacaoException("Um tópico com este mesmo título já foi cadastrado");
         }

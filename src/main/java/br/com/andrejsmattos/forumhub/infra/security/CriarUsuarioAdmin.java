@@ -16,9 +16,14 @@ public class CriarUsuarioAdmin implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         var senha = new BCryptPasswordEncoder().encode("123456");
+        var email = "andre@mail.com";
 
-        var usuario = new Usuario(null, "Andre", "andre@mail.com", senha);
-        usuarioRepository.save(usuario);
+        if (!usuarioRepository.existsByEmail(email)) {
+            var usuario = new Usuario(null, "Andre", email, senha);
+            usuarioRepository.save(usuario);
+        } else {
+            System.out.println("Usuário com o email: " + email + " já foi cadastrado");
+        }
 
         System.out.println("Usuário admin criado com sucesso!");
     }
