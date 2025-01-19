@@ -1,5 +1,7 @@
 package br.com.andrejsmattos.forumhub.domain.topico;
 
+import br.com.andrejsmattos.forumhub.domain.curso.Curso;
+import br.com.andrejsmattos.forumhub.domain.curso.CursoRepository;
 import br.com.andrejsmattos.forumhub.infra.exception.ValidacaoException;
 import br.com.andrejsmattos.forumhub.domain.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ public class TopicoService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private CursoRepository cursoRepository;
+
     public DadosDetalhamentoTopico cadastrar(DadosCadastroTopico dados) {
         if (!usuarioRepository.existsById(dados.idAutor())) {
             throw new ValidacaoException("Id do usuário informado não existe");
@@ -29,10 +34,18 @@ public class TopicoService {
             throw new ValidacaoException("Um tópico com esta mesma mensagem já foi cadastrado");
         }
 
+        var curso = cursoRepository.findByNome(dados.nomeCurso());
+
+        if (curso == null) {
+            curso = new Curso();
+            curso.setNome(dados.nomeCurso());
+            cursoRepository.save(curso);
+        }
+
         var dataCriacao = LocalDateTime.now();
         var status = Status.ABERTO;
         var autor = usuarioRepository.getReferenceById(dados.idAutor());
-        var topico = new Topico(null, dados.titulo(), dados.mensagem(), dataCriacao, status, autor, null);
+        var topico = new Topico(null, dados.titulo(), dados.mensagem(), dataCriacao, status, autor, curso);
         topicoRepository.save(topico);
 
         return new DadosDetalhamentoTopico(topico);
