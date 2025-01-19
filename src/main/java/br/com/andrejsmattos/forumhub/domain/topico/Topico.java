@@ -14,6 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "topicos")
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")

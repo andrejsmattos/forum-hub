@@ -5,7 +5,7 @@ CREATE TABLE topicos (
     data_criacao DATETIME NOT NULL,
     status VARCHAR(20) NOT NULL,
     autor_id BIGINT NOT NULL,
-    curso_id BIGINT NOT NULL,
+    curso_id BIGINT,
     PRIMARY KEY (id),
     CONSTRAINT fk_topicos_autor_id FOREIGN KEY (autor_id) REFERENCES usuarios(id),
     CONSTRAINT fk_topicos_curso_id FOREIGN KEY (curso_id) REFERENCES cursos(id),
