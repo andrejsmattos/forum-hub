@@ -23,7 +23,7 @@ public class TopicoService {
 
     public DadosDetalhamentoTopico cadastrar(DadosCadastroTopico dados) {
         if (!usuarioRepository.existsById(dados.idAutor())) {
-            throw new ValidacaoException("Id do usuário informado não existe");
+            throw new ValidacaoException("Autor não encontrado com este id: " + dados.idAutor());
         }
 
         if (topicoRepository.existsByTitulo(dados.titulo())) {
@@ -53,7 +53,7 @@ public class TopicoService {
 
     public DadosDetalhamentoTopico atualizar(DadosAtualizacaoTopico dados) {
         var topico = topicoRepository.findById(dados.id())
-                .orElseThrow(() -> new ValidacaoException("Tópico não encontrado com este id"));
+                .orElseThrow(() -> new ValidacaoException("Tópico não encontrado com este id: " + dados.id()));
 
         if (dados.titulo() != null) {
             topico.setTitulo(dados.titulo());
@@ -67,5 +67,12 @@ public class TopicoService {
         topicoRepository.save(topico);
 
         return new DadosDetalhamentoTopico(topico);
+    }
+
+    public void deletar(Long id) {
+        if(!topicoRepository.existsById(id)) {
+            throw new ValidacaoException("Tópico não encontrado com este id: " + id);
+        }
+        topicoRepository.deleteById(id);
     }
 }
