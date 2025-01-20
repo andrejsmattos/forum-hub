@@ -1,13 +1,7 @@
 # Fórum Hub API  
 
-![Java](https://img.shields.io/badge/Java-21-blue?style=flat&logo=java)  
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.1-green?style=flat&logo=spring)  
-![MySQL](https://img.shields.io/badge/MySQL-8.0.40-orange?style=flat&logo=mysql)  
-![JWT](https://img.shields.io/badge/JWT-Security-red?style=flat&logo=jsonwebtokens)  
-![Flyway](https://img.shields.io/badge/Flyway-DB%20Migrations-yellow?style=flat&logo=flywaydb)  
-![Maven](https://img.shields.io/badge/Maven-Dependency%20Management-red?style=flat&logo=apache-maven) 
+[![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.java.com/) [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4.1-6DB33F?style=for-the-badge&logo=spring-boot)](https://spring.io/projects/spring-boot) [![MySQL](https://img.shields.io/badge/MySQL-8.0.40-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/) [![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white)](https://jwt.io/) [![Flyway](https://img.shields.io/badge/Flyway-DB%20Migrations-009639?style=for-the-badge&logo=flywaydb)](https://flywaydb.org/) [![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)](https://maven.apache.org/)
 
----
 
 ## 📑 Índice  
 
@@ -19,16 +13,13 @@
 5. [📂 Acesso ao Projeto](#-acesso-ao-projeto)  
 6. [🔒 Autenticação](#-autenticação)  
 7. [📌 Endpoints](#-endpoints)  
-8. [🔍 Documentação API](#-documentação-api)  
-
-
----
+8. [🔍 Documentação API](#-documentação-api)
+9. [👨‍💻 Pessoas Desenvolvedoras do Projeto](#-pessoa-desenvolvedora-do-projeto)
 
 ## 🧵 Sobre o Projeto  
 
 Fórum Hub é uma plataforma de apoio entre alunos e professores, onde estudantes podem criar tópicos para discutir dúvidas sobre cursos de programação. O projeto foca na criação de uma API RESTful segura e robusta para gerenciar fóruns.  
 
----
 
 ## 🚦 Status do Projeto  
 
@@ -42,7 +33,6 @@ Implementação de:
 * *Gerenciamento de usuários, cursos e perfis*
 * *Listagem de tópicos por critérios como data ou curso*
 
----
 
 ## ✨ Funcionalidades e Demonstração da Aplicação  
 
@@ -54,7 +44,6 @@ Implementação de:
 Acesse a documentação da API para explorar todas as funcionalidades:  
 [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)  
 
----
 
 ## 🚀 Tecnologias Utilizadas  
 
@@ -66,7 +55,7 @@ Acesse a documentação da API para explorar todas as funcionalidades:
 - **Maven** como gerenciador de dependências  
 - **Springdoc OpenAPI** para documentação interativa  
 
----
+
 ## ⚙️ Configuração
 
 ### Variáveis de Ambiente
@@ -90,7 +79,7 @@ O projeto utiliza as seguintes tabelas:
 * `usuario_perfil` - Relacionamento entre usuários e perfis
 * `usuarios` - Dados dos usuários
 
----
+
 
 ## 📂 Acesso ao Projeto  
 
@@ -127,7 +116,7 @@ O projeto utiliza as seguintes tabelas:
 4. Acesse a documentação da API em:
    [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
----
+
 ## 🔒 Autenticação
 O projeto utiliza Spring Security com JWT para autenticação.
 
@@ -137,7 +126,7 @@ O projeto utiliza Spring Security com JWT para autenticação.
 2. Inclua o token no header das requisições:
    * `Authorization: Bearer <seu_token_aqui>`
 
----
+
 ## 📌 Endpoints
 
 ### Tópicos
@@ -149,7 +138,6 @@ O projeto utiliza Spring Security com JWT para autenticação.
 * `DELETE /topicos/{id}` - Excluir tópico
 * `POST /login` - Realizar login e obter token JWT
 
----
 
 ## 🔍 Documentação API
 
@@ -159,3 +147,7 @@ A documentação completa da API está disponível via Swagger/OpenAPI:
     http://localhost:8080/swagger-ui.html
    ```
  
+## 👨‍💻 Pessoas Desenvolvedoras do Projeto
+
+**André Mattos**: [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/andrejsmattos)
+
