@@ -1,9 +1,7 @@
 package br.com.andrejsmattos.forumhub.controller;
 
-import br.com.andrejsmattos.forumhub.domain.topico.DadosCadastroTopico;
-import br.com.andrejsmattos.forumhub.domain.topico.DadosListagemTopicos;
-import br.com.andrejsmattos.forumhub.domain.topico.TopicoRepository;
-import br.com.andrejsmattos.forumhub.domain.topico.TopicoService;
+import br.com.andrejsmattos.forumhub.domain.topico.*;
+import br.com.andrejsmattos.forumhub.infra.exception.ValidacaoException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,9 +25,9 @@ public class TopicoController {
     @PostMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroTopico dados, UriComponentsBuilder uriBuilder) {
-        var dto = service.cadastrar(dados);
-        var uri = uriBuilder.path("/topicos/{id}").buildAndExpand(dto.id()).toUri();
-        return ResponseEntity.created(uri).body(dto);
+        var topico = service.cadastrar(dados);
+        var uri = uriBuilder.path("/topicos/{id}").buildAndExpand(topico.id()).toUri();
+        return ResponseEntity.created(uri).body(topico);
     }
 
     @GetMapping
@@ -38,5 +36,18 @@ public class TopicoController {
     ) {
         var pagina = repository.findAll(paginacao).map(topico -> new DadosListagemTopicos(topico));
         return ResponseEntity.ok(pagina);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity detalhar(@PathVariable Long id) {
+        var topico = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoTopico(topico));
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<DadosDetalhamentoTopico> atualizar(@RequestBody @Valid DadosAtualizacaoTopico dados) {
+        var dto = service.atualizar(dados);
+        return ResponseEntity.ok(dto);
     }
 }

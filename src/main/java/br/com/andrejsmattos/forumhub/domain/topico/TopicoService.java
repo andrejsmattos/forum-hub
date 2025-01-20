@@ -50,4 +50,22 @@ public class TopicoService {
 
         return new DadosDetalhamentoTopico(topico);
     }
+
+    public DadosDetalhamentoTopico atualizar(DadosAtualizacaoTopico dados) {
+        var topico = topicoRepository.findById(dados.id())
+                .orElseThrow(() -> new ValidacaoException("Tópico não encontrado com este id"));
+
+        if (dados.titulo() != null) {
+            topico.setTitulo(dados.titulo());
+        }
+        if (dados.mensagem() != null) {
+            topico.setMensagem(dados.mensagem());
+        }
+        if (dados.status() != null) {
+            topico.setStatus(dados.status());
+        }
+        topicoRepository.save(topico);
+
+        return new DadosDetalhamentoTopico(topico);
+    }
 }
