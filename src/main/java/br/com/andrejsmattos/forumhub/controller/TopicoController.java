@@ -2,6 +2,7 @@ package br.com.andrejsmattos.forumhub.controller;
 
 import br.com.andrejsmattos.forumhub.domain.topico.*;
 import br.com.andrejsmattos.forumhub.infra.exception.ValidacaoException;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("topicos")
+@SecurityRequirement(name = "bearer-key")
 public class TopicoController {
 
     @Autowired
